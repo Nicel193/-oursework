@@ -1,0 +1,36 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "GCCDebug",
+            "command": "E:\\Programs\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/\\*.cpp",
+                "${workspaceFolder}/src/window/\\*.cpp",
+                "${workspaceFolder}/src/graphics\\*.cpp",
+                "${workspaceFolder}/src/graphics/voxel\\*.cpp",
+                "${workspaceFolder}/src/loaders\\*.cpp",
+                "${workspaceFolder}/src/game\\*.cpp",
+                "-o",
+                "${workspaceFolder}/CompiledProgram/myprogram.exe",
+                "E:\\Programs\\mingw64\\include\\glad.c",
+                "-L.",
+                "-lglfw3", "-lopengl32","-lgdi32"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Задача создана отладчиком."
+        }
+    ],
+    "version": "2.0.0"
+}
