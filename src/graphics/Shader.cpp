@@ -30,7 +30,7 @@ void Shader::uniformMatrix(std::string name, glm::mat4 matrix)
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-const char *vertex_shader =
+const char *vertex_shader1 =
 	"#version 330 core\n"
 	"layout (location = 0) in vec3 v_position;"
 	"layout (location = 1) in vec2 v_texCoord;"
@@ -39,6 +39,15 @@ const char *vertex_shader =
 	"void main(){"
 	"a_color = vec4(v_light,v_light,v_light,1.0f); a_texCoord = v_texCoord;"
 	"gl_Position = projview * model * vec4(v_position, 1.0);}";
+
+const char *vertex_shader2 =
+	"#version 330 core\n"
+	"layout (location = 0) in vec3 v_position;"
+	"layout (location = 1) in vec2 v_texCoord;"
+	"out vec4 a_color; out vec2 a_texCoord; uniform mat4 model;"
+	"void main(){"
+	"a_color = vec4(1.0f,1.0f,1.0f,1.0f); a_texCoord = v_texCoord;"
+	"gl_Position = model * vec4(v_position, 1.0);}";
 
 const char *fragment_shader =
 	"#version 330 core\n"
@@ -49,38 +58,9 @@ const char *fragment_shader =
 	"void main(){"
 	"f_color = a_color * texture(u_texture0, a_texCoord);}";
 
-Shader *load_shader(std::string vertexFile, std::string fragmentFile)
+Shader *load_shader(int idVertexShader)
 {
-	// Reading Files
-	// std::string vertexCode;
-	// std::string fragmentCode;
-	// std::ifstream vShaderFile;
-	// std::ifstream fShaderFile;
-
-	// vShaderFile.exceptions(std::ifstream::badbit);
-	// fShaderFile.exceptions(std::ifstream::badbit);
-	// try
-	// {
-	// 	vShaderFile.open(vertexFile);
-	// 	fShaderFile.open(fragmentFile);
-	// 	std::stringstream vShaderStream, fShaderStream;
-
-	// 	vShaderStream << vShaderFile.rdbuf();
-	// 	fShaderStream << fShaderFile.rdbuf();
-
-	// 	vShaderFile.close();
-	// 	fShaderFile.close();
-
-	// 	vertexCode = vShaderStream.str();
-	// 	fragmentCode = fShaderStream.str();
-	// }
-	// catch (std::ifstream::failure &e)
-	// {
-	// 	std::cerr << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-	// 	return nullptr;
-	// }
-	// const GLchar *vertex_shader = vertexCode.c_str();
-	// const GLchar *fragment_shader = fragmentCode.c_str();
+	const char *vertexShader = (idVertexShader == 1 ? vertex_shader1 : vertex_shader2);
 
 	GLint success;
 	GLchar infoLog[512];
@@ -88,7 +68,7 @@ Shader *load_shader(std::string vertexFile, std::string fragmentFile)
 	//------------------------------------------------------------------
 
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vs, 1, &vertex_shader, nullptr);
+	glShaderSource(vs, 1, &vertexShader, nullptr);
 	glCompileShader(vs);
 
 	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);

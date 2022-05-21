@@ -28,6 +28,7 @@ void GameStatistic::SaveStatistic()
 
                 if (game >= 1000)
                 {
+                    std::cout << "Statistics file are full\n";
                     return;
                 }
             }
@@ -40,7 +41,7 @@ void GameStatistic::SaveStatistic()
 
     if (out.is_open())
     {
-        out << "Игра: " << game << " Ваш счёт: " << GameStatistic::GameScore << "\n";
+        out << "Game: " << game << " Your score: " << GameStatistic::GameScore << "\n";
     }
     else
     {
@@ -52,5 +53,5 @@ void GameStatistic::SaveStatistic()
 
 void GameStatistic::ShowStatistic()
 {
-    std::cout << "Ваш счёт: " << GameStatistic::GameScore << "\n";
+    std::cout << "Your score: " << GameStatistic::GameScore << "\n";
 }

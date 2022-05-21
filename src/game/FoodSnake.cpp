@@ -2,7 +2,7 @@
 
 #include <time.h>
 
-void FoodSnake::FindFoodPosition(int index, int count)
+void FoodSnake::SetFoodPosition(int index, int count)
 {
     for (int y = 6; y < CHUNK_H; y++)
     {
@@ -25,13 +25,16 @@ void FoodSnake::FindFoodPosition(int index, int count)
     }
 }
 
-FoodSnake::FoodSnake(Chunk *chunk)
+FoodSnake::FoodSnake()
 {
-    int index = 0;
 
+}
+
+void FoodSnake::GenerateMesh(Chunk *chunk)
+{
     this->chunk = chunk;
 
-    FindFoodPosition(0, 20);
+    SetFoodPosition(0, 20);
 
     this->mesh = this->renderer.render(foodPositions, 5, 20);
 }
@@ -52,7 +55,7 @@ bool FoodSnake::Eat(vec3 snakePosition)
         if (this->foodPositions[i].x == snakePosition.x && this->foodPositions[i].y == snakePosition.y && this->foodPositions[i].z == snakePosition.z)
         {
             isEat = true;
-            FindFoodPosition(i, i + 1);
+            SetFoodPosition(i, i + 1);
         }
     }
 

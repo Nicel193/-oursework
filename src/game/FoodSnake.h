@@ -11,8 +11,10 @@ using namespace glm;
 class FoodSnake
 {
 public:
-    FoodSnake(Chunk *chunk);
+    FoodSnake();
     ~FoodSnake();
+
+    void GenerateMesh(Chunk *chunk);
 
     bool Eat(vec3 foodPos);
 
@@ -25,7 +27,7 @@ private:
 
     Chunk *chunk;
 
-    void FindFoodPosition(int index, int count);
+    void SetFoodPosition(int index, int count);
 };
 
 #endif

@@ -71,16 +71,13 @@ void Snake::PositionControl(Chunk *chunk, vec3 &moveVector, bool &canMoveForward
 
 void Snake::Clash()
 {
-    // if (chunk->voxels[(((int)snakePosition[0].y - 1) * CHUNK_D + ((int)snakePosition[0].z + (int)moveVector.z)) * CHUNK_W + ((int)snakePosition[0].x + (int)moveVector.x)].id != 6)
-    //     return;
-
     for (int i = lengthSnake; i > 0; i--)
     {
         if (snakePosition[0].x == snakePosition[i].x && snakePosition[0].y == snakePosition[i].y && snakePosition[0].z == snakePosition[i].z)
         {
             this->speedSnake = 0.0f;
 
-            std::cout << "Вмер";
+            std::cout << "Vmer";
 
             return;
         }

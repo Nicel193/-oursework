@@ -13,6 +13,7 @@
                 "${workspaceFolder}/src/graphics/voxel\\*.cpp",
                 "${workspaceFolder}/src/loaders\\*.cpp",
                 "${workspaceFolder}/src/game\\*.cpp",
+                "${workspaceFolder}/src/scene\\*.cpp",
                 "-o",
                 "${workspaceFolder}/CompiledProgram/myprogram.exe",
                 "E:\\Programs\\mingw64\\include\\glad.c",

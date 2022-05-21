@@ -15,6 +15,5 @@ public:
 	void uniformMatrix(std::string name, glm::mat4 matrix);
 };
 
-extern Shader* load_shader(std::string vertexFile, std::string fragmentFile);
-
-#endif /* GRAPHICS_SHADER_H_ */
+extern Shader* load_shader(int idVertexShader);
+#endif
